@@ -1,0 +1,23 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <h3>Admin</h3>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm">
+      <input formControlName="loginEmail" type="text" id="login" class="fadeIn second"  placeholder="Email">
+      <input formControlName="loginPassword" type="password" id="password" class="fadeIn third"  placeholder="password">
+      <button (click)="loginAdmin()" [disabled]="loginForm.invalid">Log In</button>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="javascript:void(0)">Fox Group</a>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<form [formGroup]="pub">
+    <div class="form-group">
+      <label>Url :</label>
+<input formControlName="lien" class="form-control" type="text" pattern="[^https?|ftp](.*?)">
+<div *ngIf="pub.get('lien').touched && pub.get('lien').hasError('pattern') && !pub.get('lien').hasError('required')" class="text-danger">Invalid</div>
+<div *ngIf="pub.get('lien').touched && pub.get('lien').hasError('required') && !pub.get('lien').hasError('pattern')" class="text-danger">Required</div>
+</div>
+<div class="form-group required-field">
+  <label for="contact-phone">Choose the product image</label><br>
+<input type="file" accept="image/x-png,image/gif,image/jpeg" formControlName="image" (change)="filechangeEvent($event)"/>
+</div><!-- End .form-group -->
+<button (click)="addPub();uploadFile()" [disabled]="pub.invalid" class="btn btn-primary">click</button>
+</form>

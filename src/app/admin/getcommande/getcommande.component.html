@@ -1,0 +1,43 @@
+<div class="row" *ngFor="let pa of allProduct">
+  <div class="card cardwith">
+    <div class="card-header">
+      {{pa.email}}
+    </div>
+    <div class="row marginTop">
+      <div class="col-md-3">
+        <h5>image product</h5>
+      </div>
+      <div class="col-md-3">
+          <h5>product Name</h5>
+        </div>
+        <div class="col-md-3">
+            <h5>product Price</h5>
+          </div>
+          <div class="col-md-3">
+              <h5>product Quantite</h5>
+            </div>
+    </div>
+    <div class="card-body" *ngFor="let pro of pa.product">
+      <div class="row"*ngFor="let prr of [pro.productName]">
+      <div class="col-md-3">
+      <img src="http://localhost:3000/{{removeFakePathUrl(prr.image)}}">
+      </div>
+      <div class="col-md-3">
+        {{prr.name}}
+      </div>
+      <div class="col-md-3">
+        {{prr.prix}}
+      </div>
+      <div class="col-md-3">
+        {{pro.quantite}}
+      </div>
+
+  </div>
+    </div>
+    <div class="card-footer text-center">
+        <p>{{pa.name}}</p>
+      <p>{{pa.telephone}}</p>
+      <a href="javascript:void(0)" (click)="donePanel(pa._id)" class="btn btn-primary">Done</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div>
+  <h1>Add Product</h1>
+</div>
+<div class="container">
+  <form [formGroup]="product">
+    <div class="form-group required-field">
+      <label for="contact-name">Name Of the Product</label>
+      <input type="text" class="form-control" id="contact-name" formControlName="name" required>
+    </div><!-- End .form-group -->
+
+    <div class="form-group required-field">
+      <mat-form-field>
+        <mat-label>Categorie</mat-label>
+        <mat-select formControlName="categorie" required>
+            <mat-option>__ __</mat-option>
+          <mat-option value="fruit">Fruit</mat-option>
+          <mat-option value="legume">Légume</mat-option>
+          <mat-option value="pattes">Pattes</mat-option>
+          <mat-option value="datte">Dattes</mat-option>
+          <mat-option value="huile">Huile</mat-option>
+          <mat-option value="materiel info">Materiel Info</mat-option>
+          <mat-option value="materiel auto">Materiel Auto</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+    </div><!-- End .form-group -->
+
+    <div class="form-group">
+      <label for="contact-phone">Price</label>
+      <input type="number" class="form-control" id="contact-phone" formControlName="prix">
+    </div><!-- End .form-group -->
+    <div class="form-group required-field">
+      <label for="contact-message">Product Description</label>
+      <textarea minlength="3"  cols="30" rows="1" id="contact-message" class="form-control"
+        formControlName="description" required></textarea>
+    </div><!-- End .form-group -->
+
+    <div class="form-group required-field">
+      <label for="contact-phone">Choose the product image</label><br>
+      <input type="file" accept="image/x-png,image/gif,image/jpeg" formControlName="image"
+        (change)="filechangeEvent($event)" name="file" id="file" class="inputfile" />
+    </div><!-- End .form-group -->
+
+
+
+    <div class="form-footer">
+      <button [disabled]="product.invalid" (click)="addProduct();uploadFile()" class="btn btn-primary">Submit</button>
+    </div><!-- End .form-footer -->
+  </form>
+</div>

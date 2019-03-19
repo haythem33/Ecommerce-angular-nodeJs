@@ -1,0 +1,17 @@
+<div class="row" *ngFor="let mess of message">
+    <div class="card text-center borderMessage">
+        <div class="card-header">
+          {{mess.name}}
+          <a (click)="delete(mess._id)" class="float-right pointeur"><img src="https://img.icons8.com/material-two-tone/24/000000/cancel.png"></a>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-text">{{mess.description}}</p>
+        </div>
+        <div class="card-footer text-muted">
+           <h4> {{mess.email}}</h4><br>
+           <h4> {{mess.telephone}}</h4>
+         
+        </div>
+      </div>
+</div>

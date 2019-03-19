@@ -1,0 +1,47 @@
+<div class="row" *ngIf="tokenAdmin">
+<div class="wrapper col-4">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h3 class="fox">Fox Group</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Publicite</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a routerLink="adduser"  routerLinkActive="router-link-active">Add Pub</a>
+                    </li>
+                    <li>
+                        <a routerLink="deleteuser"  routerLinkActive="router-link-active">Delete Pub</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a routerLink="getmessage" routerLinkActive="router-link-active">Get all Message</a>
+            </li>
+            <li>
+                <a routerLink="addproduct" routerLinkActive="router-link-active">Add Product</a>
+            </li>
+            <li>
+                <a routerLink="getcommande" routerLinkActive="router-link-active">get All Commande</a>
+            </li>
+            <li>
+                <a routerLink="history" routerLinkActive="router-link-active">History Of Commande</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="logOut()">LogOut</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+    <div class="col-7">
+        <router-outlet></router-outlet>
+    </div>
+    </div>

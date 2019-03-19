@@ -1,0 +1,325 @@
+<section *ngIf="!TokenAdmin" class="at-login-form">
+
+    <!--  MODAL LOGIN -->
+     <div class="modal fade" id="at-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <div class="row">
+             <div class="col-md-6">
+             <h5>Login</h5>
+           </div>
+           <div class="col-lg-6">
+               <div *ngIf="loginAlerte === 'user Not found'" class="alert alert-dark" role="alert">
+                   <strong>User Not find if you don't have a account please go to create account</strong>
+                 </div>
+             <div *ngIf="loginAlerte === 'error in input'" class="alert alert-danger" role="alert">
+
+                 <strong>You have a error in the information</strong>
+               </div>
+
+             </div>
+           </div>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                 aria-hidden="true">×</span></button>
+           </div>
+           <div class="modal-body">
+             <form [formGroup]="loginForm">
+               <div class="form-group">
+                 <input maxlength="50" type="email" formControlName="loginEmail" placeholder="Email Address"
+                   class="form-control">
+               </div>
+               <div class="form-group">
+                 <input type="password" maxlength="50" formControlName="loginPassword" placeholder="Password"
+                   class="form-control">
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                   <div class="checkbox">
+                   </div>
+                 </div>
+                 <div class="col-md-4 col-md-offset-2">
+                 </div>
+               </div>
+               <button [disabled]="loginForm.invalid" data-toggle="alert" data-target="" type="submit" (click)="loginUser()" class="btn-lgin">Login</button>
+             </form>
+           </div>
+           <div class="modal-footer">
+
+              <div class="row">
+               <div class="col-md-4 col-md-offset-2">
+                 <button class="btn-gst" data-toggle="modal" data-dismiss="modal" data-target="#at-signup-filling">Don't
+                   have a account ?</button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <!-- MODAL LOGIN ENDS -->
+     <!-- MODAL SIGNUP FORM FILLING -->
+     <div class="modal fade" id="at-signup-filling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+               <div class="row">
+                   <div class="col-md-6">
+                   <h5>SignUp</h5>
+                 </div>
+                 <div class="col-lg-6">
+                     <div *ngIf="loginAlerte === 'new User'" class="alert alert-success" role="alert">
+                         <strong>User Addes With Success</strong>
+                       </div>
+                   </div>
+                   </div>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                 aria-hidden="true">×</span></button>
+           </div>
+           <div class="modal-body">
+             <form [formGroup]="register">
+               <div class="form-group">
+                 <input type="text" maxlength="30" minlength="3" formControlName="username" placeholder="Fullname"
+                   [ngClass]="{ 'is-invalid': register.get('username').touched && register.get('username').invalid}"
+                   class="form-control">
+                 <div class="invalid-feedback">Minimum 3 caracter</div>
+               </div>
+               <div class="form-group">
+                 <input type="email" formControlName="email" placeholder="Email Address" class="form-control"
+                   [ngClass]="{ 'is-invalid': register.get('email').touched && register.get('email').invalid}">
+                 <div class="invalid-feedback">Invalid mail</div>
+               </div>
+               <div class="form-group">
+                 <input type="password" minlength="3" maxlength="30" formControlName="password" placeholder="Password"
+                   class="form-control"
+                   [ngClass]="{ 'is-invalid': register.get('password').touched && register.get('password').invalid}">
+                 <div class="invalid-feedback">The Password must have a minimum of 4 caracter</div>
+               </div>
+               <div class="form-group">
+                    <input type="number" minlength="3" maxlength="30" formControlName="telephone" placeholder="phoneNumber"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': register.get('telephone').touched && register.get('telephone').invalid}">
+                    <div class="invalid-feedback">enter a valid phone Number</div>
+                  </div>
+
+               <div class="row">
+                 <div class="col-md-12">
+
+                 </div>
+               </div>
+               <button [disabled]="register.invalid" type="submit" (click)="registerUser()" class="btn-lgin">Signup</button>
+             </form>
+           </div>
+           <div class="modal-footer">
+             <div class="row">
+               <div class="col-md-4 col-md-offset-2">
+                 <button class="btn-gst" data-toggle="modal" data-dismiss="modal" data-target="#at-login">Login</button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+      <!--MODAL SIGNUP FORM FILLING -->
+
+
+   </section>
+<header *ngIf="!TokenAdmin" class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-left header-dropdowns">
+
+
+
+
+
+            </div><!-- End .header-left -->
+
+
+        </div><!-- End .container -->
+    </div><!-- End .header-top -->
+
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-left">
+                <a href="index-2.html" class="logo">
+                    <img src="./../../assets/images/logo.png" alt="Porto Logo">
+                </a>
+            </div><!-- End .header-left -->
+
+            <div class="header-center">
+                <div class="header-search">
+                    <a href="#" class="search-toggle" role="button"><img class="icon-image" src="https://img.icons8.com/material-sharp/32/000000/search.png"></a>
+                    <form [formGroup]="categoriesValue" method="get">
+                        <div class="header-search-wrapper">
+                            <input (keydown.enter)="setCategorie()" type="search" class="form-control" formControlName="recherche" name="q" id="q" placeholder="Search..." required>
+                             <button (click)="setCategorie()" class="btn" type="submit"><img class="icon-image" src="https://img.icons8.com/material-sharp/32/000000/search.png"></button>
+                        </div><!-- End .header-search-wrapper -->
+                    </form>
+                </div><!-- End .header-search -->
+            </div><!-- End .headeer-center -->
+
+            <div class="header-right">
+                <button class="mobile-menu-toggler" type="button">
+                    <img src="https://img.icons8.com/material/24/000000/menu.png">
+                </button>
+                <div class="header-contact">
+                    <span>Call us now</span>
+                    <a href="tel:#"><strong>+216 71 710 553</strong></a>
+                </div><!-- End .header-contact -->
+
+                <div  class="dropdown cart-dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                      <span class="cart-count">{{panelNumber}}</span>
+                    </a>
+
+                    <div class="dropdown-menu" >
+                        <div class="dropdownmenu-wrapper" >
+                            <div class="dropdown-cart-header">
+                                <span>{{panelNumber}} Items</span>
+
+                                <a href="/filterproduct">View Cart</a>
+                            </div><!-- End .dropdown-cart-header -->
+                            <div *ngFor="let pa of panel">
+                            <div class="dropdown-cart-products" *ngFor="let paa of pa.product">
+                                <div class="product" *ngFor="let prr of [paa.productName]">
+                                    <div class="product-details" >
+                                        <h4 class="product-title">
+                                            <a href="javascript:void(0)">{{prr.name}}</a>
+                                        </h4>
+
+                                        <span class="cart-product-info">
+                                            <span class="cart-product-qty">{{paa.quantite}}</span>
+                                            x {{prr.prix}}
+                                        </span>
+                                    </div><!-- End .product-details -->
+
+                                    <figure class="product-image-container">
+                                        <a href="javascript:void(0)" class="product-image">
+                                            <img src="http://localhost:3000/{{removeFakePathUrl(prr.image)}}" alt="product">
+                                        </a>
+                                        <a href="javascript:void(0)" (click)="deletePanel(prr._id)" class="btn-remove" title="Remove Product"><i><img src="https://img.icons8.com/ios/20/000000/cancel-filled.png"></i></a>
+                                    </figure>
+                                </div><!-- End .product -->
+
+                            </div><!-- End .cart-product -->
+                          </div>
+                            
+
+                            <div class="dropdown-cart-action">
+                                <a href="/filterproduct" class="btn btn-block">Checkout</a>
+                            </div><!-- End .dropdown-cart-total -->
+                        </div><!-- End .dropdownmenu-wrapper -->
+                    </div><!-- End .dropdown-menu -->
+                </div><!-- End .dropdown -->
+            </div><!-- End .header-right -->
+        </div><!-- End .container -->
+    </div><!-- End .header-middle -->
+
+    <div class="header-bottom">
+        <div class="container">
+            <nav class="main-nav">
+                <ul class="menu sf-arrows">
+                    <li><a  routerLink="/home" routerLinkActive="router-link-active">Home</a>
+                    <li class="megamenu-container">
+                        <a (click)="CancelCategorie()" routerLink="product" routerLinkActive="router-link-active">Products</a>
+                    </li>
+                    <li>
+                        <a routerLink="/aboutus" routerLinkActive="router-link-active">About Us</a>
+
+                    </li>
+                    <li><a routerLink="/contactus" routerLinkActive="router-link-active">Contact Us</a></li>
+
+                        <li *ngIf="!Token" class="float-right buttonAuth"><a  data-toggle="modal" data-target="#at-signup-filling">Register</a></li>
+                        <li *ngIf="!Token" class="float-right buttonAuth"><a  data-toggle="modal" data-target="#at-login">login</a></li>
+                        <li *ngIf="Token" class="float-right buttonAuth"><a  (click)="logOut()">Log Out</a></li>
+                        <li *ngIf="Token" class="float-right"><a>{{Token.data.username}}</a></li>
+
+                </ul>
+            </nav>
+        </div><!-- End .header-bottom -->
+    </div><!-- End .header-bottom -->
+</header><!-- End .header -->
+<div *ngIf="!TokenAdmin" class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+<div *ngIf="!TokenAdmin" class="mobile-menu-container">
+  <div class="mobile-menu-wrapper">
+      <span class="mobile-menu-close"><i><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        width="30" height="15"
+        viewBox="0 0 192 192"
+        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,192v-192h192v192z" fill="none"></path><g fill="#ffffff"><path d="M44.8,25.6c-1.6376,0 -3.277,0.6238 -4.525,1.875l-12.8,12.8c-2.5024,2.5024 -2.5024,6.554 0,9.05l46.675,46.675l-46.675,46.675c-2.5024,2.5024 -2.5024,6.554 0,9.05l12.8,12.8c2.5024,2.5024 6.554,2.5024 9.05,0l46.675,-46.675l46.675,46.675c2.496,2.5024 6.554,2.5024 9.05,0l12.8,-12.8c2.5024,-2.5024 2.5024,-6.554 0,-9.05l-46.675,-46.675l46.675,-46.675c2.5024,-2.496 2.5024,-6.554 0,-9.05l-12.8,-12.8c-2.5024,-2.5024 -6.554,-2.5024 -9.05,0l-46.675,46.675l-46.675,-46.675c-1.2512,-1.2512 -2.8874,-1.875 -4.525,-1.875z"></path></g></g></svg></i></span>
+      <nav class="mobile-nav">
+          <ul class="mobile-menu">
+              <li class="active"><a routerLink="/home" routerLinkActive="router-link-active">Home</a></li>
+              <li>
+                  <a href="category.html">Categories</a>
+                  <ul>
+                      <li><a href="category-banner-full-width.html">Full Width Banner</a></li>
+                      <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
+                      <li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
+                      <li><a href="category-sidebar-left.html">Left Sidebar</a></li>
+                      <li><a href="category-sidebar-right.html">Right Sidebar</a></li>
+                      <li><a href="category-flex-grid.html">Product Flex Grid</a></li>
+                      <li><a href="category-horizontal-filter1.html">Horizontal Filter 1</a></li>
+                      <li><a href="category-horizontal-filter2.html">Horizontal Filter 2</a></li>
+                      <li><a href="#">Product List Item Types</a></li>
+                      <li><a href="category-infinite-scroll.html">Ajax Infinite Scroll<span class="tip tip-new">New</span></a></li>
+                      <li><a href="category-3col.html">3 Columns Products</a></li>
+                      <li><a href="category-4col.html">4 Columns Products</a></li>
+                      <li><a href="category-5col.html">5 Columns Products</a></li>
+                      <li><a href="category-6col.html">6 Columns Products</a></li>
+                      <li><a href="category-7col.html">7 Columns Products</a></li>
+                      <li><a href="category-8col.html">8 Columns Products</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a (click)="CancelCategorie()"  routerLink="/product" routerLinkActive="router-link-active">Products</a>
+                  <ul>
+                      <li>
+                          <a href="#">Variations</a>
+                          <ul>
+                              <li><a href="product.html">Horizontal Thumbnails</a></li>
+                              <li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
+                              <li><a href="product.html">Inner Zoom</a></li>
+                              <li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
+                              <li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#">Variations</a>
+                          <ul>
+                              <li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
+                              <li><a href="product-simple.html">Simple Product</a></li>
+                              <li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#">Product Layout Types</a>
+                          <ul>
+                              <li><a href="product.html">Default Layout</a></li>
+                              <li><a href="product-extended-layout.html">Extended Layout</a></li>
+                              <li><a href="product-full-width.html">Full Width Layout</a></li>
+                              <li><a href="product-grid-layout.html">Grid Images Layout</a></li>
+                              <li><a href="product-sticky-both.html">Sticky Both Side Info<span class="tip tip-hot">Hot!</span></a></li>
+                              <li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <li><a routerLink="/aboutus">About Us</a>
+              </li>
+              <li><a routerLink="/contactus">Contact Us</a></li>
+              <li *ngIf="!Token" class="color-white buttonAuth"><a  data-toggle="modal" data-target="#at-signup-filling">Register</a></li>
+              <li *ngIf="!Token" class=" color-white buttonAuth"><a data-toggle="modal" data-target="#at-login">login</a></li>
+              <li *ngIf="Token" class="color-white buttonAuth"><a>{{Token.data.username}}</a></li>
+              <li *ngIf="Token" class="color-white buttonAuth"><a (click)="logOut()">Log Out</a></li>
+
+          </ul>
+      </nav><!-- End .mobile-nav -->
+
+      <div class="social-icons">
+          <a href="https://www.facebook.com" class="social-icon" target="_blank"><i><img src="https://img.icons8.com/color/25/000000/facebook.png"></i></a>
+          <a href="https://twitter.com" class="social-icon" target="_blank"><i><img src="https://img.icons8.com/color/25/000000/twitter.png"></i></a>
+          <a href="https://www.instagram.com" class="social-icon" target="_blank"><i ><img src="https://img.icons8.com/office/25/000000/instagram-new.png"></i></a>
+      </div><!-- End .social-icons -->
+  </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End -->
+<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>

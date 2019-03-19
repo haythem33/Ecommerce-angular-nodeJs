@@ -1,0 +1,9 @@
+.borderMessage {
+    width: 400px;
+}
+.colorMessage{
+    color: blue;
+}
+.pointeur{
+    cursor: pointer;
+}
