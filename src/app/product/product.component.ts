@@ -147,7 +147,6 @@ addPanel(f) {
 setIdProduct(f) {
  this.productService.setIdProduct(f);
  this.router.navigateByUrl('/viewproduct')
-
 }
 }
 

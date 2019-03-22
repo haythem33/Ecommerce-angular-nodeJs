@@ -1,6 +1,15 @@
-/* .product-image {
+.product-image {
   display: block;
-  min-height: 355px;
-  max-height: 355px;
-  height: 355px;
-} */
+  min-height: 215px;
+  max-height: 215px;
+  height: 215px;
+}
+.mat {
+  width: 240px;
+}
+.marginTop {
+  margin-top: 50px;
+}
+.marginTop2 {
+  margin-top: 100px;
+}
