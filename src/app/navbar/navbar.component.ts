@@ -62,7 +62,15 @@ export class NavbarComponent implements OnInit {
   });
 }
   registerUser() {
-    this.authService.registerUser(this.register.value).subscribe(res => {
+    let obj = {
+      username : this.register.value.username,
+      email: this.register.value.email,
+      password: this.register.value.password,
+      telephone : this.register.value.telephone,
+      role : 'user'
+    }
+    this.authService.registerUser(obj).subscribe(res => {
+      console.log(res);
      if (res['message'] === 'new User') {
        this.loginAlerte = res['message'];
      }
@@ -112,11 +120,13 @@ export class NavbarComponent implements OnInit {
     this.panelService.deletePanel(this.Token['data'].panel, f).subscribe(res => {
     });
     this.panelService.getPanel(this.Token['data'].panel).subscribe(res => {
+      this.panel = [res]
     });
   } else if (localStorage.getItem('panel')) {
     this.panelService.deletePanel(localStorage.getItem('panel'), f).subscribe(res => {
     });
     this.panelService.getPanel(localStorage.getItem('panel')).subscribe(res => {
+      this.panel = [res]
     });
   }
 }

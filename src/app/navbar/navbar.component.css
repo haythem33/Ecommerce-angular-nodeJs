@@ -267,12 +267,26 @@ padding: 0px 10px;
   cursor: pointer;
 }
 .buttonAuth:hover {
-  color: #08c;
+  color: #E4A636;
 }
 .router-link-active {
-  color: #08c;
+  color: #E4A636;
 }
 .color-white {
   color: white!important;
+}
+.logoFox {
+  width: 197px;
+  margin-top: 25px;
+}
+.header-middle .header-center {
+  padding-left: 40px!important;
+}
+.header-middle {
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+.navbarLink:hover {
+ color: #E4A636!important;
 }
 

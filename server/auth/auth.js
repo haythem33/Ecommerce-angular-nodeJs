@@ -22,7 +22,7 @@ if (!getUser) {
   user.email = req.body.email;
   user.password = bcrypt.hashSync(req.body.password);
   user.telephone = req.body.telephone
-  user.role = 'user'
+  user.role = req.body.role
   user.save((err , doc) => {
   if (!err) {
     res.send({message: "new User"});
@@ -32,7 +32,7 @@ if (!getUser) {
   }
   })
 } else {
-  res.send('invalid email');
+  res.send({message :'invalid email'});
 }
 });
 

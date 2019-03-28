@@ -124,25 +124,11 @@
 
    </section>
 <header *ngIf="!TokenAdmin" class="header">
-    <div class="header-top">
-        <div class="container">
-            <div class="header-left header-dropdowns">
-
-
-
-
-
-            </div><!-- End .header-left -->
-
-
-        </div><!-- End .container -->
-    </div><!-- End .header-top -->
-
     <div class="header-middle">
         <div class="container">
             <div class="header-left">
-                <a href="index-2.html" class="logo">
-                    <img src="./../../assets/images/logo.png" alt="Porto Logo">
+                <a routerLink="/home" routerLinkActive="router-link-active" class="logo">
+                    <img class="logoFox" src="./../../assets/imageBackground/logo.png" alt="Porto Logo">
                 </a>
             </div><!-- End .header-left -->
 
@@ -160,7 +146,7 @@
 
             <div class="header-right">
                 <button class="mobile-menu-toggler" type="button">
-                    <img src="https://img.icons8.com/material/24/000000/menu.png">
+                    <img src="https://img.icons8.com/material/24/000000/menu.png"><br>
                 </button>
                 <div class="header-contact">
                     <span>Call us now</span>
@@ -219,15 +205,15 @@
         <div class="container">
             <nav class="main-nav">
                 <ul class="menu sf-arrows">
-                    <li><a  routerLink="/home" routerLinkActive="router-link-active">Home</a>
+                    <li><a class="navbarLink"routerLink="/home" routerLinkActive="router-link-active">Home</a>
                     <li class="megamenu-container">
-                        <a (click)="CancelCategorie()" routerLink="product" routerLinkActive="router-link-active">Products</a>
+                        <a class="navbarLink" (click)="CancelCategorie()" routerLink="product" routerLinkActive="router-link-active">Products</a>
                     </li>
                     <li>
-                        <a routerLink="/aboutus" routerLinkActive="router-link-active">About Us</a>
+                        <a class="navbarLink" routerLink="/aboutus" routerLinkActive="router-link-active">About Us</a>
 
                     </li>
-                    <li><a routerLink="/contactus" routerLinkActive="router-link-active">Contact Us</a></li>
+                    <li><a class="navbarLink" routerLink="/contactus" routerLinkActive="router-link-active">Contact Us</a></li>
 
                         <li *ngIf="!Token" class="float-right buttonAuth"><a  data-toggle="modal" data-target="#at-signup-filling">Register</a></li>
                         <li *ngIf="!Token" class="float-right buttonAuth"><a  data-toggle="modal" data-target="#at-login">login</a></li>

@@ -65,12 +65,12 @@ router.post('/loginPanel/:idUser', async (req,res)=> {
 const result = await panelModel.findOne({_id : req.body.id2});
 const result2 = await panelModel.findOne({_id : req.body.id});
 if (result && result2) {
-  const addPanel = await panelModel.updateOne(result, { $addToSet: { product: result2.product}})
-  const deletePanel = await panelModel.findByIdAndRemove(result2._id);
+  const addPanel = await panelModel.updateOne(result, { $addToSet: { product: result2.product}}).catch()
+  const deletePanel = await panelModel.findByIdAndRemove(result2._id).catch();
   res.send(deletePanel);
   } else if (!result) {
-    const setUser = await userModel.findOneAndUpdate(req.params.idUser,{$set: {panel : result2._id}});
-    const getUser = await userModel.findOne({_id : req.params.idUser})
+    const setUser = await userModel.findOneAndUpdate(req.params.idUser,{$set: {panel : result2._id}}).catch();
+    const getUser = await userModel.findOne({_id : req.params.idUser}).catch()
     res.send({message : 'new Panel' , token: jwt.sign({data : getUser}, 'secret')});
   }
 })
@@ -83,10 +83,9 @@ router.get('/getpanel/:id', async (req,res)=> {
 })
 router.get('/deleteProduct/:id/:idProduct', async (req,res)=> {
   let id = {_id : req.params.id};
-    const deletePanel = await panelModel.updateOne(id, {$pull : {product : { productName : req.params.idProduct}}})
-    const getPanel = await panelModel.findOne({_id : req.params.id});
+    const deletePanel = await panelModel.updateOne(id, {$pull : {product : { productName : req.params.idProduct}}}).catch();
+    const  getPanel = await panelModel.findOne(id);
     res.send(getPanel);
-    req.app.io.emit('deleteProduct', getPanel);
 })
 router.post('/updatenombre/:id/:index', async (req,res) => {
   let id = {_id : req.params.id}

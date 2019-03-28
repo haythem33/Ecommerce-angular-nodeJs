@@ -8,13 +8,13 @@ export class ContactService {
 
   constructor(private http: HttpClient) { }
  api_url : String = environment.api_url;
-  sendContact(form) {
-    return this.http.post(this.api_url +  '/contact/add', form);
-  }
-  getAllContact() {
-    return this.http.get(this.api_url +  '/contact/get');
-  }
-  delete(id) {
-    return this.http.get(this.api_url +  `/contact/delete/${id}`)
-  }
+ sendContact(form) {
+  return this.http.post(this.api_url +  '/contact/add', form);
+}
+getAllContact() {
+  return this.http.get(this.api_url +  '/contact/get');
+}
+delete(id) {
+  return this.http.get(this.api_url +  `/contact/delete/${id}`)
+}
 }
