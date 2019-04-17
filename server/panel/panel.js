@@ -107,7 +107,7 @@ router.get('/deletePanel/:id', async (req,res)=> {
   res.send(result)
 })
 router.post('/getActivePanel', async (req,res) => {
-  const result = await panelModel.find({statut : req.body.statut}).populate('product.productName')
+  const result = await panelModel.find({statut : req.body.statut}).populate('product.productName').catch()
   res.send(result)
 })
 router.post('/confirmPanelNoAccount/:id', async (req,res)=> {
@@ -117,7 +117,7 @@ router.post('/confirmPanelNoAccount/:id', async (req,res)=> {
 })
 router.post('/panelDone/:id', async (req,res)=> {
   let id = {_id :req.params.id};
-  const result = await panelModel.updateOne(id, {$set : {statut : req.body.statut}})
+  const result = await panelModel.updateOne(id, {$set : {statut : req.body.statut}}).catch()
 })
 router.post('/getHistory', async (req,res) => {
   const result = await panelModel.find({statut : req.body.statut}).populate('product.productName')

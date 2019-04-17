@@ -1,4 +1,7 @@
-<div class="row" *ngFor="let pa of allProduct">
+<mat-form-field class="mat">
+    <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="recherche">
+  </mat-form-field>
+<div class="row" *ngFor="let pa of dataSource.filteredData">
   <div class="card cardwith">
     <div class="card-header">
       {{pa.email}}

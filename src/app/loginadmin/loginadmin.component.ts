@@ -25,8 +25,7 @@ export class LoginadminComponent implements OnInit {
     if (res['message'] === 'Admin Ok') {
       console.log('You win')
      localStorage.setItem('tokenAdmin', res['token'])
-     this.router.navigateByUrl('/admin');
-     window.location.reload();
+     window.location.replace('/admin')
     } else {
     if (this.chance < 2){
       this.chance++
