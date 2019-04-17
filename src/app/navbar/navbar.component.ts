@@ -73,6 +73,8 @@ export class NavbarComponent implements OnInit {
       console.log(res);
      if (res['message'] === 'new User') {
        this.loginAlerte = res['message'];
+     } else {
+       this.loginAlerte = res['message']
      }
     });
   }

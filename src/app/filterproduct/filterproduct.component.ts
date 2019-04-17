@@ -114,9 +114,9 @@ export class FilterproductComponent implements OnInit {
         if (res['message'] === "confirm Panel") {
           localStorage.clear();
           localStorage.setItem('token', res['token'])
-          this.router.navigateByUrl('/home');
-          window.location.reload()
           alert('your Panel have been sent')
+          this.router.navigateByUrl('/product');
+          
         }
       })
     } else {
@@ -129,9 +129,8 @@ export class FilterproductComponent implements OnInit {
       this.panelService.confirmPanelNoAccount(localStorage.getItem('panel'), obj).subscribe(res => {
         if (res['message'] === 'confirm Panel') {
           localStorage.clear();
-          this.router.navigateByUrl('/home');
-          window.location.reload()
           alert('your Panel have been sent')
+          this.router.navigateByUrl('/product');  
         }
       })
     }

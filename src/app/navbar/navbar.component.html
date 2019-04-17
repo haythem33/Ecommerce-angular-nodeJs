@@ -5,25 +5,19 @@
        <div class="modal-dialog" role="document">
          <div class="modal-content">
            <div class="modal-header">
-             <div class="row">
-             <div class="col-md-6">
-             <h5>Login</h5>
-           </div>
-           <div class="col-lg-6">
-               <div *ngIf="loginAlerte === 'user Not found'" class="alert alert-dark" role="alert">
-                   <strong>User Not find if you don't have a account please go to create account</strong>
-                 </div>
-             <div *ngIf="loginAlerte === 'error in input'" class="alert alert-danger" role="alert">
-
-                 <strong>You have a error in the information</strong>
-               </div>
-
-             </div>
-           </div>
+             <h3>Login</h3>
+           
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                  aria-hidden="true">×</span></button>
            </div>
            <div class="modal-body">
+              <div *ngIf="loginAlerte === 'user Not found'" class="marginB text-danger" role="alert">
+                  <strong>User Not find if you don't have a account please go to create account</strong>
+                </div>
+            <div *ngIf="loginAlerte === 'error in input'" class="marginB text-danger" role="alert">
+
+                <strong>You have a error in the information</strong>
+            </div>
              <form [formGroup]="loginForm">
                <div class="form-group">
                  <input maxlength="50" type="email" formControlName="loginEmail" placeholder="Email Address"
@@ -62,20 +56,18 @@
        <div class="modal-dialog" role="document">
          <div class="modal-content">
            <div class="modal-header">
-               <div class="row">
-                   <div class="col-md-6">
-                   <h5>SignUp</h5>
-                 </div>
-                 <div class="col-lg-6">
-                     <div *ngIf="loginAlerte === 'new User'" class="alert alert-success" role="alert">
-                         <strong>User Addes With Success</strong>
-                       </div>
-                   </div>
-                   </div>
+              <h3>SignUp</h3>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                  aria-hidden="true">×</span></button>
            </div>
            <div class="modal-body">
+              
+                  <div *ngIf="loginAlerte === 'new User'" class="marginB text-success" role="alert">
+                      <strong>User Addes With Success</strong>
+                    </div>
+                    <div *ngIf="loginAlerte === 'invalid email'" class="marginB text-danger">
+                      <strong>The email is already used</strong>
+                    </div>
              <form [formGroup]="register">
                <div class="form-group">
                  <input type="text" maxlength="30" minlength="3" formControlName="username" placeholder="Fullname"

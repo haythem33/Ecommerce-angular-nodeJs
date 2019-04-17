@@ -289,4 +289,6 @@ padding: 0px 10px;
 .navbarLink:hover {
  color: #E4A636!important;
 }
-
+.marginB{
+  margin-bottom: 10px;
+}
