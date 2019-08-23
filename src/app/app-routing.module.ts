@@ -24,6 +24,10 @@ const routes: Routes = [
        path : 'loginAdmin',
        component : LoginadminComponent
      },
+     {
+        path : '',
+        component : HomeComponent
+     },
       {
         path: 'home',
         component: HomeComponent
