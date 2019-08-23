@@ -52,7 +52,6 @@ Token;
   }
   getproductByFilter(f) {
     this.productService.getProductByfilter(f).subscribe(res => {
-      console.log(res);
       
       if (res['message'] !== 'no data') {
       this.allproduct = res;
@@ -99,7 +98,6 @@ addPanel(f) {
       }]
       };
     this.panelSerivce.addPanelAccount(this.Token['data']._id, obj).subscribe(res => {
-      console.log(res);
       this.panelSerivce.getPanel(this.Token['data'].panel).subscribe(data => {
       });
       if (res['message'] === 'create Panel') {
@@ -119,9 +117,7 @@ addPanel(f) {
       }]
       };
       this.panelSerivce.addPanelNoAccount(obj).subscribe(res => {
-      console.log(res);
       this.panelSerivce.getPanel(localStorage.getItem('panel')).subscribe(data => {
-        console.log(data)
       });
       });
     } else {
@@ -133,11 +129,9 @@ addPanel(f) {
         }]
         };
         this.panelSerivce.addPanelNoAccount(obj).subscribe(res => {
-          console.log(res);
           if (res['message'] === 'create panel') {
             localStorage.setItem('panel', res['data']);
             this.panelSerivce.getPanel(localStorage.getItem('panel')).subscribe(data => {
-              console.log(data);
             });
           }
         });

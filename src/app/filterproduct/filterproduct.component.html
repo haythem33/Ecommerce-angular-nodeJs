@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <main class="main">
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
@@ -18,8 +19,8 @@
                             </tr>
                         </thead>
                         <tbody >
-                            <tr class="product-row" *ngFor="let paa of panel2; let i = index">
-                                <td class="product-col" *ngFor="let prr of [paa.productName]">
+                            <tr class="product-row" *ngFor="let paa of panel2;trackBy: trackByFn; let i = index">
+                                <td class="product-col" *ngFor="let prr of [paa.productName];trackBy: trackByFn">
                                     <figure class="product-image-container">
                                         <a href="javascript:void(0)" class="product-image">
                                             <img src="http://localhost:3000/{{removeFakePathUrl(prr?.image)}}"
@@ -32,11 +33,13 @@
                                    
                                 </td>
 
-                                <td *ngFor="let prr of [paa.productName]">${{prr.prix}}</td>
+                                <td *ngFor="let prr of [paa.productName];trackBy: trackByFn">{{prr.prix}} Dt</td>
                                 <td>
-                                    <div *ngFor="let prr of [paa.productName]"
+                                    <div  *ngFor="let prr of [paa.productName];trackBy: trackByFn"
                                         class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
-                                        <p class="vertical-quantity form-control">{{paa.quantite}}</p>
+                                    
+                                        <input [disabled]="Quntits === 0" type="number" value="{{paa.quantite}}" class="vertical-quantity form-control noneArrow">
+                                    
                                         <span class="input-group-btn-vertical">
                                             <button (click)="addQuantite(prr._id,i,paa.quantite)"
                                                 class="btn btn-outline bootstrap-touchspin-up icon-up-dir"
@@ -45,10 +48,11 @@
                                                 class="btn btn-outline bootstrap-touchspin-down icon-down-dir"
                                                 type="button"></button>
                                         </span>
+                                    
                                     </div>
                                 </td>
-                                <td *ngFor="let prr of [paa.productName]">{{Total(prr.prix,paa.quantite)}}</td>
-                                <td style="cursor:pointer" *ngFor="let prr of [paa.productName]"
+                                <td *ngFor="let prr of [paa.productName];trackBy: trackByFn">{{Total(prr.prix,paa.quantite)}} Dt</td>
+                                <td style="cursor:pointer" *ngFor="let prr of [paa.productName];trackBy: trackByFn"
                                     (click)="deletePanel(prr._id)"><img
                                         src="https://img.icons8.com/color/25/000000/close-window.png"></td>
                             </tr>
@@ -76,15 +80,21 @@
 
 
                     <table class="table table-totals">
-                        <tbody *ngFor="let paa of panel2">
-                            <tr *ngFor="let prr of [paa.productName]">
+                        <tbody *ngFor="let paa of panel2;trackBy: trackByFn">
+                            <tr *ngFor="let prr of [paa.productName];trackBy: trackByFn">
                                 <td>{{prr.name}}</td>
-                                <td>{{Total(prr.prix, paa.quantite)}}</td>
+                                <td>{{Total(prr.prix, paa.quantite)}} Dt</td>
+                                
                             </tr>
 
 
                         </tbody>
+                        
                         <tfoot>
+                         <tr>
+                            <td>Order Total</td>
+                            <td *ngIf="panel2.length > 0">{{GetAllTotal()}} Dt</td>
+                        </tr>
                         </tfoot>
                     </table>
 
@@ -135,3 +145,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>

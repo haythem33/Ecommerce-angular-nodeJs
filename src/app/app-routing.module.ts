@@ -25,10 +25,6 @@ const routes: Routes = [
        component : LoginadminComponent
      },
       {
-        path : '',
-        component: HomeComponent
-      },
-      {
         path: 'home',
         component: HomeComponent
       },

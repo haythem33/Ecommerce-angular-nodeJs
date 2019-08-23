@@ -19,13 +19,16 @@ export class FilterproductComponent implements OnInit {
   totalProduct = [];
   total = 0;
   confirmPanel: FormGroup;
+  Quntits = 0;
   constructor(public authService: AuthService, public productService: ProductService, public panelService: PanelService, public router: Router) {
     this.confirmPanel = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', [Validators.required, Customvalidation.checkLimit(10000000, 99999999)])
     })
+
   }
+  
 
   ngOnInit() {
     this.getsocket()
@@ -98,7 +101,6 @@ export class FilterproductComponent implements OnInit {
       if (res['product']) {
         this.panelNumber = res['product'].length;
         this.panel2 = res['product'];
-        console.log(this.panel2)
       }
     });
   }
@@ -134,5 +136,16 @@ export class FilterproductComponent implements OnInit {
         }
       })
     }
+  }
+  GetAllTotal() {
+    let total = 0;
+    for (let i = 0; i < this.panel2.length; i++) {
+      const product = this.panel2[i];
+       total += (product.productName.prix * product.quantite);
+    }
+    return total;
+  }
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 }

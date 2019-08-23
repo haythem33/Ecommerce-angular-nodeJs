@@ -54,12 +54,16 @@ export class NavbarComponent implements OnInit {
     }
     this.panelService.getPanelSocket().subscribe(res => {
       
-      if (res['product']) {
       this.panelNumber = res['product'].length;
       this.panel = [res];
-       }
+       
     
   });
+  this.panelService.deletePanelSocket().subscribe(data => {
+    
+    this.panelNumber = data['product'].length;
+    this.panel = [data]
+  })
 }
   registerUser() {
     let obj = {
@@ -70,7 +74,6 @@ export class NavbarComponent implements OnInit {
       role : 'user'
     }
     this.authService.registerUser(obj).subscribe(res => {
-      console.log(res);
      if (res['message'] === 'new User') {
        this.loginAlerte = res['message'];
      } else {
@@ -120,15 +123,10 @@ export class NavbarComponent implements OnInit {
   deletePanel(f) {
     if (this.Token) {
     this.panelService.deletePanel(this.Token['data'].panel, f).subscribe(res => {
-    });
-    this.panelService.getPanel(this.Token['data'].panel).subscribe(res => {
-      this.panel = [res]
+
     });
   } else if (localStorage.getItem('panel')) {
     this.panelService.deletePanel(localStorage.getItem('panel'), f).subscribe(res => {
-    });
-    this.panelService.getPanel(localStorage.getItem('panel')).subscribe(res => {
-      this.panel = [res]
     });
   }
 }
